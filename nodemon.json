@@ -1,0 +1,5 @@
+{
+  "watch": ["src"],
+  "ext": ".ts",
+  "exec": "babel-node --require dotenv/config --extensions '.ts' src/server"
+}

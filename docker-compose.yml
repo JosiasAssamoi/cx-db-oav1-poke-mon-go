@@ -1,0 +1,19 @@
+version: '3'
+services:
+#  api:
+#    container_name: app-node-container
+#    build: .
+#    depends_on:
+#      - database
+  database:
+    image: mongo:latest
+    container_name: app-mongo-container
+    environment:
+      - MONGO_DATABASE=database
+      - MONGO_ROOT_USERNAME=root
+      - MONGO_ROOT_PASSWORD=toor
+    expose:
+      - 27017
+    ports:
+      - 27017:27017
+# /!\ check container dependencies / depends_on + volumes
