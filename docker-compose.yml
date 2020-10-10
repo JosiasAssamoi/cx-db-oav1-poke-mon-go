@@ -1,19 +1,30 @@
 version: '3'
 services:
-#  api:
-#    container_name: app-node-container
-#    build: .
-#    depends_on:
-#      - database
-  database:
+  api:
+    container_name: app-node-container
+    build: .
+    depends_on:
+      - db
+    volumes: 
+      - apidata:/data/api
+  db:
     image: mongo:latest
-    container_name: app-mongo-container
     environment:
+      - WAIT_HOSTS=localhost:27017
       - MONGO_DATABASE=database
       - MONGO_ROOT_USERNAME=root
       - MONGO_ROOT_PASSWORD=toor
+ 
     expose:
       - 27017
     ports:
       - 27017:27017
+    volumes: 
+        - mongodb-data:/data/db
+
+
+volumes: 
+  mongodb-data:
+  apidata:
+
 # /!\ check container dependencies / depends_on + volumes
